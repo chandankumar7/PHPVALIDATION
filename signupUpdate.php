@@ -1,3 +1,31 @@
+<?php
+    
+     include 'conn.php';
+    if(isset($_POST['submit']))
+    {
+       $id=$_GET['id'];
+       $username=$_POST['username'];
+       $email=$_POST['email'];
+       $password=$_POST['password'];
+       $pno=$_POST['pno'];
+       $gender=$_POST['gender'];
+       $Country=$_POST['Country'];
+
+       $q=" UPDATE `signup` SET `id`= $id,`username`= $username,`email`=$email,`password`=$password,
+                   `contactnumber`= $pno,`sex`=$gender,`country`=$Country WHERE id=$id";
+
+       $query=mysqli_query($con,$q);
+       header('location:signupDisplay.php');
+      
+    }
+?>
+
+
+
+
+
+
+
 <!DOCTYPE>
 <html>
 <head>
@@ -98,12 +126,12 @@
 <body>
     <!------------------------- <form> Element------------------------------------------->
     <div>
-        <form id="myForm" action="Login Page.html" onsubmit=" return validation()" value="Reset form">
+        <form method="post">
             <h1>Welcome To Sign up Page</h1>
             <img src="Assets/User-Signup-blue-icon.png" width="200px" height="200px"><br>
             <div class="nme">
                 <label> Name</label>
-                <input id="un" type="text" name="name" placeholder="Name..."><br>
+                <input id="un" type="text" name="username" placeholder="Name..."><br>
                 <br>
             </div>
             <div class="mail">
@@ -111,7 +139,7 @@
                 <input id="email" type="text" name="email" placeholder="Email Address..."><br><br>
             </div>
             <label class="password">Password</label>
-            <input id="pw" class="label" type="password" name="pass" placeholder="********************..."><br><br>
+            <input id="pw" class="label" type="password" name="password" placeholder="********************..."><br><br>
             <div>
                 Contact Number: <input id="cn" type="tel" name="pno"><br>
             </div>
@@ -129,11 +157,8 @@
                 </select>
             </div><br>
             <!----------------------------checkbox--------------------------------------------------->
-            <button type="buttton">Signup</button><br>
+             <button  type="submit" value="submit" name="submit">Signup</button><br><br>
         </form>
     </div>
-    
-    
-    
-
-</body></html>
+</body>
+</html>
